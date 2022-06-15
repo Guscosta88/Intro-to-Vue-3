@@ -6,8 +6,8 @@ app.component('product-display', {
     }
   },
   template: 
-  /*html*/
-  `<div class="product-display">
+  variable = /*html*/
+   `<div class="product-display">
     <div class="product-container">
       <div class="product-image">
         <img v-bind:src="image">
@@ -38,6 +38,8 @@ app.component('product-display', {
           v-on:click="addToCart">
           Add to Cart
         </button>
+
+        <button class="button" v-on:click="removeFromCart">Remove Item </button>
       </div>
     </div>
     <review-list v-if="reviews.length" :reviews="reviews"></review-list>
@@ -60,6 +62,9 @@ app.component('product-display', {
       addToCart() {
           this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
       },
+      removeFromCart() {
+        this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
+    },
       updateVariant(index) {
           this.selectedVariant = index
       },
